@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using CalculatorLibrary;
 
 namespace lilWe3zy.Calculator;
 
@@ -9,12 +10,11 @@ internal static partial class Program
         var calculator = new CalculatorLibrary.Calculator();
         bool endApp = false;
 
-        Console.WriteLine("Console Calculator in C#\r");
-        Console.WriteLine("------------------------\n");
+        Ui.DrawHeading();
 
         while (!endApp)
         {
-            Console.Write("Type a number, and then press Enter: ");
+            Console.Write("> ");
             string? input = Console.ReadLine();
 
             double firstOperand;

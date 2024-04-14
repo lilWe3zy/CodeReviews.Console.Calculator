@@ -52,6 +52,9 @@ public class Calculator
 
                 _writer.WriteValue("Divide");
                 break;
+            case "r":
+                _writer.WriteValue("Square root");
+                break;
             default:
                 Console.WriteLine("I could not understand that option, please try again.");
                 break;

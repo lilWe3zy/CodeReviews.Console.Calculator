@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console.Calculator.lilWe3zy", "Console.Calculator.lilWe3zy\Console.Calculator.lilWe3zy.csproj", "{3C0A3861-96C4-42C0-A440-09F2EEF624A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorLibrary", "CalculatorLibrary\CalculatorLibrary.csproj", "{CC273A4E-A1E3-446E-A94D-6B925C443D69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C0A3861-96C4-42C0-A440-09F2EEF624A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0A3861-96C4-42C0-A440-09F2EEF624A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0A3861-96C4-42C0-A440-09F2EEF624A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0A3861-96C4-42C0-A440-09F2EEF624A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC273A4E-A1E3-446E-A94D-6B925C443D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC273A4E-A1E3-446E-A94D-6B925C443D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC273A4E-A1E3-446E-A94D-6B925C443D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC273A4E-A1E3-446E-A94D-6B925C443D69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

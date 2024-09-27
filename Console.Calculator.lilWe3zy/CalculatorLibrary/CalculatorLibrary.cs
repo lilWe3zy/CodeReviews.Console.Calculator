@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CalculatorLibrary;
 
@@ -22,6 +23,16 @@ public class Calculator
         return list.Select(element => double.TryParse(element, out var number) ? number : double.NaN).ToList();
     }
 
+    private void PrintLog()
+    {
+        Finish();
+
+        var log = JObject.Parse(File.ReadAllText("log.json"));
+        var array = (JArray)log["Operations"];
+
+        foreach (var operation in array) Console.WriteLine(operation);
+    }
+
     public double DoOperation(string operation)
     {
         var operands = new List<string>();
@@ -34,7 +45,8 @@ public class Calculator
                 "Please enter operand (additional operands will be ignored"),
             "pow" => Helpers.ReadInput(
                 "Please enter operands (values after the second will be ignored)"),
-            "l" or "ld" => Helpers.ReadInput("Are you sure you want to delete the log file? (y/n)"),
+            "ld" => Helpers.ReadInput("Are you sure you want to delete the log file? (y/n)"),
+            "l" => "", // empty string to skip asking for an operand
             _ => Helpers.ReadInput("Please enter operands (delimited by spaces)")
         };
 
@@ -97,13 +109,13 @@ public class Calculator
                 _writer.WriteValue("Tangent");
                 break;
             case "l":
+                PrintLog();
                 break;
             case "ld":
                 if (selection == "y")
                 {
                     Console.WriteLine("Deleting log file.");
 
-                    _writer.WriteEndObject();
                     Finish();
 
                     File.Delete("log.json");

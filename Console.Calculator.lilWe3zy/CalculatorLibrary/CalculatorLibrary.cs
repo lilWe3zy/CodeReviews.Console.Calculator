@@ -34,7 +34,8 @@ public class Calculator
                 "Please enter operand (additional operands will be ignored"),
             "pow" => Helpers.ReadInput(
                 "Please enter operands (values after the second will be ignored)"),
-            _ => Helpers.ReadInput("Please enter operands (delimited by space)")
+            "l" or "ld" => Helpers.ReadInput("Are you sure you want to delete the log file? (y/n)"),
+            _ => Helpers.ReadInput("Please enter operands (delimited by spaces)")
         };
 
         while (selection == null)
@@ -42,14 +43,14 @@ public class Calculator
 
         operands.AddRange(selection.Split(' '));
 
-        // Parse into new list of double, if parse unsuccessful, element marked as NAN
+        // Parse into new list of double, if parse unsuccessful, element marked as NaN and ignored
         var numbers = ParseList(operands);
 
         _writer.WriteStartObject();
 
         for (var i = 0; i < numbers.Count; i++)
         {
-            _writer.WritePropertyName($"Operand{i + 1}");
+            _writer.WritePropertyName($"Operand {i + 1}");
             _writer.WriteValue(numbers[i]);
         }
 
@@ -95,11 +96,34 @@ public class Calculator
                 result = Math.Tan(numbers[0]);
                 _writer.WriteValue("Tangent");
                 break;
+            case "l":
+                break;
+            case "ld":
+                if (selection == "y")
+                {
+                    Console.WriteLine("Deleting log file.");
+
+                    _writer.WriteEndObject();
+                    Finish();
+
+                    File.Delete("log.json");
+
+                    Console.WriteLine("Deleted log file.");
+                }
+                else
+                {
+                    Console.WriteLine("Aborting");
+                }
+
+                break;
         }
+
+        if (operation is "l" or "ld") return result;
 
         _writer.WritePropertyName("Result");
         _writer.WriteValue(result);
         _writer.WriteEndObject();
+
 
         return result;
     }

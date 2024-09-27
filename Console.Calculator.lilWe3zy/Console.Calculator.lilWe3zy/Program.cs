@@ -6,7 +6,7 @@
  * CHALLENGES
  *
  * [x] Create a functionality that will count the amount of times the calculator was used.
- * [] Store a list with the latest calculations. And give the users the ability to delete that list.
+ * [x] Store a list with the latest calculations. And give the users the ability to delete that list.
  * [] Allow the users to use the results in the list above to perform new calculations.
  * [x] Add extra calculations: Square Root, Taking the Power, 10x, Trigonometry functions.
  */
@@ -42,6 +42,7 @@ internal static partial class Program
             while (selection == null || !InputRegex().IsMatch(selection))
                 selection = Helpers.ReadInput("Please enter a valid option.");
 
+            // Preprocessing
             if (selection == "n")
             {
                 calculator.Finish();
@@ -51,9 +52,18 @@ internal static partial class Program
             try
             {
                 var result = calculator.DoOperation(selection);
-                if (double.IsNaN(result))
-                    System.Console.WriteLine("This operation will result in a mathematical error.\n");
-                else System.Console.WriteLine("Your result: {0:0.##}\n", result);
+                switch (result)
+                {
+                    case double.NaN when selection is "ld" or "l":
+                        calculatorCount--;
+                        break;
+                    case double.NaN:
+                        System.Console.WriteLine("This operation will result in a mathematical error.\n");
+                        break;
+                    default:
+                        System.Console.WriteLine("Your result: {0:0.##}\n", result);
+                        break;
+                }
             }
             catch (Exception e)
             {
